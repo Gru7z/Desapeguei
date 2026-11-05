@@ -1,6 +1,33 @@
-/* ================= BASE ================= */
+/* =========================================================
+   DESAPEGUEI - home.css
 
-html, body {
+   ÍNDICE
+   1.  Base
+   2.  Cabeçalho (header principal)
+   3.  Produtos (cards da home)
+   4.  Header compacto (checkout / vender)
+   5.  Pagamento
+   6.  Cartão de crédito
+   7.  Painel Admin
+       7.1 Topo e busca
+       7.2 Mensagens
+       7.3 Tabela (cores do tema)
+       7.4 Linha expansível
+       7.5 Status e botões
+       7.6 Edição de produto
+   8.  Rodapé
+   9.  Páginas de informações
+   10. Minha conta (perfil, dados, e-mail, senha)
+   11. Responsivo (tablet e celular)
+   ========================================================= */
+
+
+/* =========================================================
+   1. BASE
+   ========================================================= */
+
+html,
+body {
     background-color: #b6845f;
     margin: 0;
     padding: 0;
@@ -9,15 +36,20 @@ html, body {
     min-height: 100%;
 }
 
-/* ================= HEADER ================= */
+main {
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   2. CABEÇALHO
+   ========================================================= */
 
 .header-custom {
     background-color: #a85f2d;
     width: 100%;
     padding: 10px;
 }
-
-/* ================= TOPO ================= */
 
 .top-header {
     display: flex;
@@ -27,27 +59,40 @@ html, body {
     flex-wrap: wrap;
 }
 
-/* ================= TÍTULO ================= */
-
 .titulo-site {
     font-size: 3rem;
     color: white;
     text-align: center;
-    text-shadow: 3px 3px 5px rgba(0,0,0,0.4);
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-/* ================= LOGO / PERFIL ================= */
+/* ---------- Logos e ícones ---------- */
 
 .logo-perfil,
 .carrinho {
-    width: 45px;
-    height: 45px;
     object-fit: cover;
 }
 
-/* ================= PESQUISA ================= */
+.logo-perfil {
+    width: 45px;
+    height: 45px;
+}
+
+.carrinho {
+    width: 35px;
+    height: 35px;
+}
+
+.logo-site {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ---------- Pesquisa ---------- */
 
 .barra-pesquisa {
     width: 100%;
@@ -70,7 +115,7 @@ html, body {
     border-radius: 0 10px 10px 0;
 }
 
-/* ================= ICONES ================= */
+/* ---------- Ícones e usuário ---------- */
 
 .icones {
     display: flex;
@@ -78,8 +123,6 @@ html, body {
     gap: 12px;
     margin-left: auto;
 }
-
-/* ================= BLOCO USUARIO ================= */
 
 .usuario-box {
     display: flex;
@@ -101,7 +144,7 @@ html, body {
     margin-top: 5px;
 }
 
-/* ================= MENU ================= */
+/* ---------- Menu e navegação ---------- */
 
 .menu-header {
     gap: 15px;
@@ -117,10 +160,19 @@ html, body {
 }
 
     .nav-link-custom:hover {
-        color: rgb(255,245,109);
+        color: rgb(255, 245, 109);
     }
 
-/* ================= BOTÃO ================= */
+.navegacao a {
+    color: white;
+    text-decoration: none;
+}
+
+    .navegacao a:hover {
+        color: rgb(207, 178, 13);
+    }
+
+/* ---------- Botão vender ---------- */
 
 .vender-btn {
     background: #d3a07b;
@@ -135,13 +187,10 @@ html, body {
         color: white;
     }
 
-/* ================= MAIN ================= */
 
-main {
-    margin-top: 30px;
-}
-
-/* ================= PRODUTOS ================= */
+/* =========================================================
+   3. PRODUTOS (cards da home)
+   ========================================================= */
 
 .card-produto {
     background: #efc8a7;
@@ -167,187 +216,15 @@ main {
         object-fit: contain;
     }
 
-/* ================= CARRINHO ================= */
 
-.carrinho {
-    width: 35px;
-    height: 35px;
-}
-
-/* ================= LOGO DO SITE ================= */
-
-.logo-site {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-/* ================= NAVEGAÇÃO ================= */
-
-.navegacao a {
-    color: white;
-    text-decoration: none;
-}
-
-    .navegacao a:hover {
-        color: rgb(207,178,13);
-    }
-
-/* ================= FOOTER ================= */
-
-footer {
-    margin-top: 50px;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-/* ================= RESPONSIVO TABLET ================= */
-
-@media (max-width: 992px) {
-
-    .titulo-site {
-        font-size: 2.6rem;
-    }
-
-    .logo-perfil {
-        width: 50px;
-        height: 50px;
-    }
-
-    .nav-link-custom {
-        font-size: 1.1rem;
-    }
-
-    .barra-pesquisa input {
-        font-size: 1rem;
-    }
-
-    .card img {
-        height: 160px;
-    }
-}
-
-/* ================= RESPONSIVO CELULAR ================= */
-
-@media (max-width: 768px) {
-
-    /* ================= TOPO ================= */
-
-    .top-header {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-    }
-
-    /* ================= PESQUISA ================= */
-
-    .barra-pesquisa {
-        width: 100%;
-        max-width: 220px;
-    }
-
-        .barra-pesquisa input {
-            font-size: 12px;
-        }
-
-    /* ================= ICONES ================= */
-
-    .icones {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-left: 0;
-    }
-
-    /* ================= BLOCO USUARIO ================= */
-
-    .usuario-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .email-usuario {
-        font-size: 11px;
-        max-width: 120px;
-        text-align: center;
-    }
-
-    .btn-sair {
-        padding: 4px 10px;
-        font-size: 12px;
-        margin-top: 4px;
-    }
-
-    /* ================= TITULO ================= */
-
-    .titulo-site {
-        font-size: 2.2rem;
-        margin-top: 15px;
-        text-align: center;
-    }
-
-    /* ================= MENU ================= */
-
-    .menu-header {
-        gap: 12px;
-        padding: 0 10px;
-        justify-content: center;
-    }
-
-    .nav-link-custom {
-        font-size: 0.95rem;
-    }
-
-    /* ================= BOTAO ================= */
-
-    .vender-btn {
-        width: 90%;
-        max-width: 300px;
-        font-size: 1rem;
-    }
-
-    /* ================= LOGOS ================= */
-
-    .logo-site {
-        width: 45px;
-        height: 45px;
-    }
-
-    .logo-perfil {
-        width: 38px;
-        height: 38px;
-    }
-
-    .carrinho {
-        width: 26px;
-        height: 26px;
-    }
-
-    /* ================= CARDS ================= */
-
-    .card img {
-        height: 150px;
-    }
-}
-
-/* ======================================================= */
-/* ================= HEADER COMPACTO (CHECKOUT/VENDER) ==== */
-/* ======================================================= */
+/* =========================================================
+   4. HEADER COMPACTO (checkout / vender)
+   ========================================================= */
 
 .corpo-checkout {
     background-color: #b6845f;
     min-height: 100vh;
 }
-
-/* ALTERADO: fundo igual ao da logo */
 
 .header-checkout {
     background-color: #a85f2d;
@@ -365,7 +242,7 @@ footer {
     color: white;
     font-size: 2.2rem;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .icone-checkout {
@@ -379,7 +256,7 @@ footer {
     align-items: center;
 }
 
-/* ================= BOTÃO VOLTAR PARA PÁGINA INICIAL ================= */
+/* Botão "voltar para página inicial" */
 
 .btn-voltar-admin {
     background-color: #7d421f;
@@ -397,7 +274,10 @@ footer {
         color: white !important;
     }
 
-/* ================= PAGAMENTO (restyle) ================= */
+
+/* =========================================================
+   5. PAGAMENTO
+   ========================================================= */
 
 .painel-pagamento {
     background: linear-gradient(180deg, #fbe3c9 0%, #efc8a7 100%);
@@ -406,7 +286,7 @@ footer {
     padding: 32px;
     border-radius: 18px;
     border-top: 5px solid #a85f2d;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     animation: apareceCheckout 0.35s ease;
 }
 
@@ -428,19 +308,19 @@ footer {
     cursor: pointer;
     transition: 0.25s ease;
     border: 2px solid transparent;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
     .opcao-pagamento:hover {
         border-color: #a85f2d;
         transform: translateY(-2px);
-        box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
     }
 
     .opcao-pagamento.selecionada {
         border-color: #a85f2d;
         background: #f2cda4;
-        box-shadow: 0 6px 16px rgba(168,95,45,0.35);
+        box-shadow: 0 6px 16px rgba(168, 95, 45, 0.35);
     }
 
     .opcao-pagamento .form-check-input {
@@ -474,7 +354,7 @@ footer {
     font-weight: bold;
     margin-top: 14px;
     letter-spacing: 0.5px;
-    box-shadow: 0 6px 14px rgba(192,57,43,0.4);
+    box-shadow: 0 6px 14px rgba(192, 57, 43, 0.4);
     transition: 0.25s ease;
 }
 
@@ -482,10 +362,13 @@ footer {
         background: linear-gradient(135deg, #c0392b, #922b21);
         color: white;
         transform: translateY(-2px);
-        box-shadow: 0 8px 18px rgba(146,43,33,0.5);
+        box-shadow: 0 8px 18px rgba(146, 43, 33, 0.5);
     }
 
-/* ================= CARTÃO DE CRÉDITO (restyle) ================= */
+
+/* =========================================================
+   6. CARTÃO DE CRÉDITO
+   ========================================================= */
 
 .painel-cartao {
     background: #ffffff;
@@ -494,7 +377,7 @@ footer {
     padding: 32px;
     border-radius: 18px;
     border-top: 5px solid #1f1f1f;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     animation: apareceCheckout 0.35s ease;
 }
 
@@ -522,7 +405,7 @@ footer {
 
         .painel-cartao .form-control:focus {
             border-color: #a85f2d;
-            box-shadow: 0 0 0 3px rgba(168,95,45,0.2);
+            box-shadow: 0 0 0 3px rgba(168, 95, 45, 0.2);
             background: #fff;
         }
 
@@ -557,7 +440,7 @@ footer {
     padding: 10px 20px;
     flex: 1;
     font-weight: bold;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
     transition: 0.25s ease;
 }
 
@@ -566,6 +449,8 @@ footer {
         color: white;
         transform: translateY(-2px);
     }
+
+/* Animação usada pelos painéis de pagamento e cartão */
 
 @keyframes apareceCheckout {
     from {
@@ -579,7 +464,10 @@ footer {
     }
 }
 
-/* ================= PAINEL ADMIN ================= */
+
+/* =========================================================
+   7. PAINEL ADMIN
+   ========================================================= */
 
 .admin-container {
     max-width: 1250px;
@@ -587,6 +475,8 @@ footer {
     padding: 40px 30px 70px;
     color: white;
 }
+
+/* ---------- 7.1 Topo e busca ---------- */
 
 .admin-topo {
     display: flex;
@@ -606,11 +496,10 @@ footer {
 .admin-subtitulo {
     display: block;
     margin-top: 8px;
-    color: #c9824d;
+    color: #6f472f;
     font-size: 17px;
+    font-weight: bold;
 }
-
-/* ================= BUSCA ================= */
 
 .admin-busca {
     display: flex;
@@ -646,14 +535,12 @@ footer {
         background: #c8783a;
     }
 
-/* ================= MENSAGEM ================= */
+/* ---------- 7.2 Mensagens ---------- */
 
 .admin-alerta {
     border-radius: 10px;
     margin-bottom: 25px;
 }
-
-/* ================= NENHUM PRODUTO ================= */
 
 .admin-vazio {
     background: #333333;
@@ -665,10 +552,19 @@ footer {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* ================= TABELA ================= */
+/* ---------- 7.3 Tabela (cores do tema) ----------
+   Cores da tabela ficam nas variáveis abaixo: é só trocar aqui.
+   - linha normal: marrom do tema
+   - linha com mouse / aberta: branco
+*/
 
 .tabela-admin-wrapper {
-    background: white;
+    --admin-linha: white;
+    --admin-linha-hover: #d3a07b;
+    --admin-detalhes: #fff5ed;
+    --admin-divisor: rgba(74, 44, 23, 0.18);
+    --admin-texto: #4a2c17;
+    background: var(--admin-linha);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -677,9 +573,46 @@ footer {
 .tabela-admin {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* larguras previsíveis: título longo não estoura a tabela */
 }
 
-    /* CABEÇALHO */
+    /* Larguras das colunas */
+
+    .tabela-admin .col-produto {
+        width: auto;
+    }
+
+    .tabela-admin .col-categoria {
+        width: 120px;
+    }
+
+    .tabela-admin .col-preco {
+        width: 115px;
+        white-space: nowrap;
+    }
+
+    .tabela-admin .col-criador {
+        width: 190px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .tabela-admin .col-data {
+        width: 105px;
+        white-space: nowrap;
+    }
+
+    .tabela-admin .col-status {
+        width: 95px;
+    }
+
+    .tabela-admin .col-seta {
+        width: 50px;
+        text-align: center;
+    }
+
+    /* Cabeçalho */
 
     .tabela-admin thead {
         background: #a85f2d;
@@ -687,39 +620,121 @@ footer {
     }
 
     .tabela-admin th {
-        padding: 17px;
+        padding: 17px 15px;
         text-align: left;
         font-size: 14px;
         text-transform: uppercase;
     }
 
-    /* CORPO DA TABELA */
+    /* Corpo */
 
     .tabela-admin td {
         padding: 15px;
-        color: #4a2c17;
-        border-bottom: 1px solid #eeeeee;
+        color: var(--admin-texto);
+        border-bottom: 1px solid var(--admin-divisor);
+        vertical-align: middle;
     }
 
-    .tabela-admin tbody tr:hover {
-        background: #fff5ed;
-    }
+/* Produto (imagem + título) */
 
 .td-produto {
     display: flex;
     align-items: center;
     gap: 12px;
     font-weight: bold;
+    min-width: 0;
 }
 
 .miniatura-admin {
     width: 55px;
     height: 55px;
+    flex-shrink: 0;
     object-fit: cover;
     border-radius: 10px;
 }
 
-/* ================= STATUS ================= */
+.titulo-produto {
+    min-width: 0;
+    overflow-wrap: anywhere; /* quebra títulos sem espaços (aaaaaa...) */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ---------- 7.4 Linha expansível ---------- */
+
+.linha-produto {
+    background: var(--admin-linha);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+    .linha-produto:hover,
+    .linha-produto:focus-visible,
+    .linha-produto.aberta {
+        background: var(--admin-linha-hover);
+        outline: none;
+    }
+
+        .linha-produto.aberta td {
+            border-bottom-color: transparent;
+        }
+
+        .linha-produto.aberta .titulo-produto {
+            -webkit-line-clamp: unset;
+            display: block;
+        }
+
+.seta-expandir {
+    display: inline-block;
+    color: #a85f2d;
+    font-size: 18px;
+    transition: transform 0.2s;
+}
+
+.linha-produto.aberta .seta-expandir {
+    transform: rotate(180deg);
+}
+
+.linha-detalhes[hidden] {
+    display: none;
+}
+
+.linha-detalhes td {
+    padding: 0;
+    background: var(--admin-detalhes);
+}
+
+.detalhes-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 4px 20px 20px 90px;
+}
+
+.detalhes-texto {
+    flex: 1;
+    min-width: 0;
+}
+
+    .detalhes-texto p {
+        margin: 4px 0 0;
+        color: var(--admin-texto);
+        overflow-wrap: anywhere;
+        max-height: 140px;
+        overflow-y: auto;
+    }
+
+.detalhes-rotulo {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #a85f2d;
+}
+
+/* ---------- 7.5 Status e botões ---------- */
 
 .badge-admin {
     display: inline-block;
@@ -739,12 +754,12 @@ footer {
     color: #a32d2d;
 }
 
-/* ================= BOTÕES ================= */
-
 .acoes-admin {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 6px;
+    gap: 8px;
+    flex-shrink: 0;
 }
 
 .btn-admin {
@@ -758,8 +773,6 @@ footer {
     cursor: pointer;
 }
 
-/* EDITAR */
-
 .btn-editar-admin {
     background: #3978b9;
 }
@@ -769,8 +782,6 @@ footer {
         color: white;
     }
 
-/* OCULTAR */
-
 .btn-ocultar-admin {
     background: #d69228;
 }
@@ -778,8 +789,6 @@ footer {
     .btn-ocultar-admin:hover {
         background: #b47418;
     }
-
-/* APAGAR */
 
 .btn-apagar-admin {
     background: #bd4034;
@@ -789,7 +798,7 @@ footer {
         background: #962e25;
     }
 
-/* ================= LINK PAINEL ADMIN ================= */
+/* Link "Painel Admin" no menu do site */
 
 .btn-admin-link {
     background: #7d421f;
@@ -806,7 +815,7 @@ footer {
         color: white !important;
     }
 
-/* ---- Edição de produto (admin) ---- */
+/* ---------- 7.6 Edição de produto ---------- */
 
 .admin-editar-container {
     max-width: 900px;
@@ -814,7 +823,7 @@ footer {
     padding: 30px;
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     color: #4a2c17;
 }
 
@@ -847,7 +856,7 @@ footer {
 
     .campo-admin:focus {
         border-color: #a85f2d;
-        box-shadow: 0 0 0 3px rgba(168,95,45,0.2);
+        box-shadow: 0 0 0 3px rgba(168, 95, 45, 0.2);
         background: #fff;
     }
 
@@ -906,7 +915,7 @@ footer {
     padding: 10px 20px;
     flex: 1;
     font-weight: bold;
-    box-shadow: 0 6px 14px rgba(60,179,113,0.4);
+    box-shadow: 0 6px 14px rgba(60, 179, 113, 0.4);
     transition: 0.25s ease;
 }
 
@@ -916,21 +925,17 @@ footer {
         transform: translateY(-2px);
     }
 
-/* ================= RESPONSIVO ADMIN ================= */
 
-@media (max-width: 768px) {
+/* =========================================================
+   8. RODAPÉ
+   ========================================================= */
 
-    .admin-busca input {
-        min-width: 0;
-        flex: 1;
-    }
-
-    .acoes-admin {
-        justify-content: flex-start;
-    }
+footer {
+    margin-top: 50px;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
-
-/* ================= FOOTER ================= */
 
 .footer-desapeguei {
     background-color: #a85f2d;
@@ -987,7 +992,9 @@ footer {
 }
 
 
-/* ================= PÁGINAS DE INFORMAÇÕES ================= */
+/* =========================================================
+   9. PÁGINAS DE INFORMAÇÕES
+   ========================================================= */
 
 .pagina-informacao {
     max-width: 950px;
@@ -995,7 +1002,7 @@ footer {
     background-color: #fffaf5;
     padding: 45px 60px;
     border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(74, 44, 23, 0.20);
+    box-shadow: 0 8px 25px rgba(74, 44, 23, 0.2);
     border-top: 7px solid #a85f2d;
 }
 
@@ -1051,74 +1058,61 @@ footer {
     }
 
 
-/* ================= FOOTER NO CELULAR ================= */
-
-@media (max-width: 768px) {
-
-    .footer-conteudo {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .footer-desapeguei {
-        padding: 35px 25px 20px;
-    }
-
-    .footer-final {
-        text-align: center;
-    }
-
-    .pagina-informacao {
-        padding: 30px 25px;
-    }
-
-        .pagina-informacao h2 {
-            font-size: 26px;
-        }
-}
 /* =========================================================
-   MINHA CONTA
+   10. MINHA CONTA (perfil, dados pessoais, e-mail, senha)
+   As quatro telas compartilham o mesmo visual.
    ========================================================= */
 
-/* ================= PERFIL ================= */
+/* ---------- Estrutura da página ---------- */
 
-.perfil-container {
+.perfil-container,
+.dados-container,
+.email-container,
+.senha-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 45px 30px;
 }
 
-.perfil-topo {
+.perfil-topo,
+.dados-topo,
+.email-topo,
+.senha-topo {
     margin-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
     padding-bottom: 20px;
 }
 
-    .perfil-topo h1 {
+    .perfil-topo h1,
+    .dados-topo h1,
+    .email-topo h1,
+    .senha-topo h1 {
         color: white;
         font-size: 38px;
         font-weight: bold;
         margin: 0;
     }
 
-    .perfil-topo p {
+    .perfil-topo p,
+    .dados-topo p,
+    .email-topo p,
+    .senha-topo p {
         color: #6f472f;
         font-size: 20px;
         font-weight: bold;
         margin-top: 8px;
     }
 
-
-/* ================= CONTEÚDO ================= */
-
-.perfil-conteudo {
+.perfil-conteudo,
+.dados-conteudo,
+.email-conteudo,
+.senha-conteudo {
     display: flex;
     gap: 30px;
     align-items: flex-start;
 }
 
-
-/* ================= MENU ================= */
+/* ---------- Menu lateral ---------- */
 
 .perfil-menu {
     width: 280px;
@@ -1147,16 +1141,33 @@ footer {
         font-weight: bold;
     }
 
+/* ---------- Cards ---------- */
 
-/* ================= CARD PERFIL ================= */
-
-.perfil-card {
+.perfil-card,
+.dados-lista,
+.email-card,
+.senha-card {
     background-color: #fffaf5;
     width: 550px;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
+
+    .email-card h2,
+    .senha-card h2 {
+        color: #4a2c17;
+        font-size: 25px;
+        margin: 0 0 5px;
+    }
+
+    .email-card > p,
+    .senha-card > p {
+        color: #6f472f;
+        margin-bottom: 25px;
+    }
+
+/* ---------- Perfil (foto e cabeçalho) ---------- */
 
 .perfil-cabecalho {
     display: flex;
@@ -1200,82 +1211,11 @@ footer {
     margin-bottom: 20px;
 }
 
-.perfil-informacoes label {
-    display: block;
-    color: #6f472f;
-    font-weight: bold;
-    margin-bottom: 7px;
-}
+/* ---------- Campos, rótulos e valores ---------- */
 
-.perfil-email {
-    background-color: #f4ede6;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 14px;
-    color: #4a2c17;
-    margin-bottom: 20px;
-}
-
-.btn-alterar-foto {
-    background-color: #a85f2d;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-    .btn-alterar-foto:hover {
-        background-color: #7d421f;
-    }
-
-
-/* =========================================================
-   DADOS PESSOAIS
-   ========================================================= */
-
-.dados-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 45px 30px;
-}
-
-.dados-topo {
-    margin-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.25);
-    padding-bottom: 20px;
-}
-
-    .dados-topo h1 {
-        color: white;
-        font-size: 38px;
-        font-weight: bold;
-        margin: 0;
-    }
-
-    .dados-topo p {
-        color: #6f472f;
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 8px;
-    }
-
-.dados-conteudo {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-}
-
-.dados-lista {
-    background-color: #fffaf5;
-    width: 550px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
-
-.dados-item {
+.dados-item,
+.email-item,
+.senha-item {
     margin-bottom: 20px;
 }
 
@@ -1283,88 +1223,18 @@ footer {
         margin-bottom: 0;
     }
 
-    .dados-item label {
+    .perfil-informacoes label,
+    .dados-item label,
+    .email-item label,
+    .senha-item label {
         display: block;
         color: #6f472f;
         font-weight: bold;
         margin-bottom: 7px;
     }
 
-.dados-valor {
-    background-color: #f4ede6;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 14px;
-    color: #4a2c17;
-}
-
-
-/* =========================================================
-   E-MAIL
-   ========================================================= */
-
-.email-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 45px 30px;
-}
-
-.email-topo {
-    margin-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.25);
-    padding-bottom: 20px;
-}
-
-    .email-topo h1 {
-        color: white;
-        font-size: 38px;
-        font-weight: bold;
-        margin: 0;
-    }
-
-    .email-topo p {
-        color: #6f472f;
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 8px;
-    }
-
-.email-conteudo {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-}
-
-.email-card {
-    background-color: #fffaf5;
-    width: 550px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
-
-    .email-card h2 {
-        color: #4a2c17;
-        font-size: 25px;
-        margin: 0 0 5px;
-    }
-
-    .email-card > p {
-        color: #6f472f;
-        margin-bottom: 25px;
-    }
-
-.email-item {
-    margin-bottom: 20px;
-}
-
-    .email-item label {
-        display: block;
-        color: #6f472f;
-        font-weight: bold;
-        margin-bottom: 7px;
-    }
-
+.perfil-email,
+.dados-valor,
 .email-valor {
     background-color: #f4ede6;
     border: 1px solid #ddd;
@@ -1373,104 +1243,11 @@ footer {
     color: #4a2c17;
 }
 
-.email-input {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #f4ede6;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 14px;
-    color: #4a2c17;
-    font-size: 16px;
-}
-
-    .email-input:focus {
-        border-color: #a85f2d;
-        outline: none;
-    }
-
-.btn-email {
-    background-color: #a85f2d;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-    .btn-email:hover {
-        background-color: #7d421f;
-    }
-
-
-/* =========================================================
-   SENHA
-   ========================================================= */
-
-.senha-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 45px 30px;
-}
-
-.senha-topo {
-    margin-bottom: 30px;
-    border-bottom: 1px solid rgba(255,255,255,0.25);
-    padding-bottom: 20px;
-}
-
-    .senha-topo h1 {
-        color: white;
-        font-size: 38px;
-        font-weight: bold;
-        margin: 0;
-    }
-
-    .senha-topo p {
-        color: #6f472f;
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 8px;
-    }
-
-.senha-conteudo {
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-}
-
-.senha-card {
-    background-color: #fffaf5;
-    width: 550px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-}
-
-    .senha-card h2 {
-        color: #4a2c17;
-        font-size: 25px;
-        margin: 0 0 5px;
-    }
-
-    .senha-card > p {
-        color: #6f472f;
-        margin-bottom: 25px;
-    }
-
-.senha-item {
+.perfil-email {
     margin-bottom: 20px;
 }
 
-    .senha-item label {
-        display: block;
-        color: #6f472f;
-        font-weight: bold;
-        margin-bottom: 7px;
-    }
-
+.email-input,
 .senha-input {
     display: block;
     width: 100%;
@@ -1483,11 +1260,16 @@ footer {
     font-size: 16px;
 }
 
+    .email-input:focus,
     .senha-input:focus {
         border-color: #a85f2d;
         outline: none;
     }
 
+/* ---------- Botões ---------- */
+
+.btn-alterar-foto,
+.btn-email,
 .btn-senha {
     background-color: #a85f2d;
     color: white;
@@ -1498,16 +1280,186 @@ footer {
     cursor: pointer;
 }
 
+    .btn-alterar-foto:hover,
+    .btn-email:hover,
     .btn-senha:hover {
         background-color: #7d421f;
     }
 
 
 /* =========================================================
-   CELULAR
+   11. RESPONSIVO
    ========================================================= */
 
+/* ---------- Tablet ---------- */
+
+@media (max-width: 992px) {
+
+    .titulo-site {
+        font-size: 2.6rem;
+    }
+
+    .logo-perfil {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-link-custom {
+        font-size: 1.1rem;
+    }
+
+    .barra-pesquisa input {
+        font-size: 1rem;
+    }
+
+    .card img {
+        height: 160px;
+    }
+}
+
+/* ---------- Celular ---------- */
+
 @media (max-width: 768px) {
+
+    /* Cabeçalho */
+
+    .top-header {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .titulo-site {
+        font-size: 2.2rem;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .barra-pesquisa {
+        width: 100%;
+        max-width: 220px;
+    }
+
+        .barra-pesquisa input {
+            font-size: 12px;
+        }
+
+    .icones {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-left: 0;
+    }
+
+    .usuario-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .email-usuario {
+        font-size: 11px;
+        max-width: 120px;
+        text-align: center;
+    }
+
+    .btn-sair {
+        padding: 4px 10px;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    .menu-header {
+        gap: 12px;
+        padding: 0 10px;
+        justify-content: center;
+    }
+
+    .nav-link-custom {
+        font-size: 0.95rem;
+    }
+
+    .vender-btn {
+        width: 90%;
+        max-width: 300px;
+        font-size: 1rem;
+    }
+
+    .logo-site {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo-perfil {
+        width: 38px;
+        height: 38px;
+    }
+
+    .carrinho {
+        width: 26px;
+        height: 26px;
+    }
+
+    .card img {
+        height: 150px;
+    }
+
+    /* Painel admin */
+
+    .admin-busca input {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .acoes-admin {
+        justify-content: flex-start;
+    }
+
+    /* no celular a tabela rola na horizontal em vez de cortar colunas */
+    .tabela-admin-wrapper {
+        overflow-x: auto;
+    }
+
+    .tabela-admin {
+        min-width: 760px;
+    }
+
+    .detalhes-admin {
+        flex-direction: column;
+        padding: 4px 15px 18px;
+    }
+
+    /* Rodapé */
+
+    .footer-conteudo {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .footer-desapeguei {
+        padding: 35px 25px 20px;
+    }
+
+    .footer-final {
+        text-align: center;
+    }
+
+    /* Páginas de informações */
+
+    .pagina-informacao {
+        padding: 30px 25px;
+    }
+
+        .pagina-informacao h2 {
+            font-size: 26px;
+        }
+
+    /* Minha conta */
 
     .perfil-container,
     .dados-container,
@@ -1541,5 +1493,3 @@ footer {
         width: auto;
     }
 }
-
-

@@ -39,29 +39,35 @@
             <table class="tabela-admin">
                 <thead>
                     <tr>
-                        <th>Produto</th>
-                        <th>Categoria</th>
-                        <th>Preço</th>
-                        <th>Criado por</th>
-                        <th>Data</th>
-                        <th>Status</th>
-                        <th class="text-end">Ações</th>
+                        <th class="col-produto">Produto</th>
+                        <th class="col-categoria">Categoria</th>
+                        <th class="col-preco">Preço</th>
+                        <th class="col-criador">Criado por</th>
+                        <th class="col-data">Data</th>
+                        <th class="col-status">Status</th>
+                        <th class="col-seta"><span class="visually-hidden">Ações</span></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var produto in Model)
                     {
-                        <tr>
-                            <td class="td-produto">
-                                <img src="@ImagemDoProduto(produto.ImagemUrl)"
-                                     class="miniatura-admin" alt="@produto.Titulo">
-                                <span>@produto.Titulo</span>
+                        var detalhesId = $"detalhes-{produto.Id}";
+
+                        <tr class="linha-produto" tabindex="0" role="button"
+                            aria-expanded="false" aria-controls="@detalhesId" data-alvo="@detalhesId"
+                            title="Clique para ver as ações">
+                            <td class="col-produto">
+                                <div class="td-produto">
+                                    <img src="@ImagemDoProduto(produto.ImagemUrl)"
+                                         class="miniatura-admin" alt="@produto.Titulo">
+                                    <span class="titulo-produto">@produto.Titulo</span>
+                                </div>
                             </td>
-                            <td>@produto.Categoria</td>
-                            <td>R$ @produto.Preco.ToString("N2")</td>
-                            <td>@(produto.CriadoPor ?? "—")</td>
-                            <td>@produto.DataCriacao.ToLocalTime().ToString("dd/MM/yyyy")</td>
-                            <td>
+                            <td class="col-categoria">@produto.Categoria</td>
+                            <td class="col-preco">R$ @produto.Preco.ToString("N2")</td>
+                            <td class="col-criador">@(produto.CriadoPor ?? "—")</td>
+                            <td class="col-data">@produto.DataCriacao.ToLocalTime().ToString("dd/MM/yyyy")</td>
+                            <td class="col-status">
                                 @if (produto.Disponivel)
                                 {
                                     <span class="badge-admin badge-ativo">Ativo</span>
@@ -71,23 +77,36 @@
                                     <span class="badge-admin badge-oculto">Oculto</span>
                                 }
                             </td>
-                            <td class="text-end acoes-admin">
-                                <a asp-controller="Admin" asp-action="Editar" asp-route-id="@produto.Id" class="btn-admin btn-editar-admin">
-                                    Editar
-                                </a>
+                            <td class="col-seta"><span class="seta-expandir" aria-hidden="true">&#9662;</span></td>
+                        </tr>
 
-                                <form asp-controller="Admin" asp-action="AlternarDisponibilidade" asp-route-id="@produto.Id" method="post" class="d-inline">
-                                    <button type="submit" class="btn-admin btn-ocultar-admin">
-                                        @(produto.Disponivel ? "Ocultar" : "Reativar")
-                                    </button>
-                                </form>
+                        <tr class="linha-detalhes" id="@detalhesId" hidden>
+                            <td colspan="7">
+                                <div class="detalhes-admin">
+                                    <div class="detalhes-texto">
+                                        <span class="detalhes-rotulo">Descrição</span>
+                                        <p>@(string.IsNullOrWhiteSpace(produto.Descricao) ? "Sem descrição." : produto.Descricao)</p>
+                                    </div>
 
-                                <form asp-controller="Admin" asp-action="Apagar" asp-route-id="@produto.Id" method="post" class="d-inline"
-                                      onsubmit="return confirm('Tem certeza que deseja apagar o produto \'@produto.Titulo\'? Essa ação não pode ser desfeita.');">
-                                    <button type="submit" class="btn-admin btn-apagar-admin">
-                                        Apagar
-                                    </button>
-                                </form>
+                                    <div class="acoes-admin">
+                                        <a asp-controller="Admin" asp-action="Editar" asp-route-id="@produto.Id" class="btn-admin btn-editar-admin">
+                                            Editar
+                                        </a>
+
+                                        <form asp-controller="Admin" asp-action="AlternarDisponibilidade" asp-route-id="@produto.Id" method="post" class="d-inline">
+                                            <button type="submit" class="btn-admin btn-ocultar-admin">
+                                                @(produto.Disponivel ? "Ocultar" : "Reativar")
+                                            </button>
+                                        </form>
+
+                                        <form asp-controller="Admin" asp-action="Apagar" asp-route-id="@produto.Id" method="post" class="d-inline form-apagar"
+                                              data-titulo="@produto.Titulo">
+                                            <button type="submit" class="btn-admin btn-apagar-admin">
+                                                Apagar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -97,3 +116,37 @@
     }
 
 </div>
+
+@section Scripts {
+    <script>
+        (function() {
+            function alternar(linha) {
+                var alvo = document.getElementById(linha.dataset.alvo);
+                if (!alvo) return;
+                var abrir = alvo.hasAttribute('hidden');
+                alvo.toggleAttribute('hidden', !abrir);
+                linha.classList.toggle('aberta', abrir);
+                linha.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+            }
+
+            document.querySelectorAll('.linha-produto').forEach(function(linha) {
+                linha.addEventListener('click', function() { alternar(linha); });
+                linha.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        alternar(linha);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.form-apagar').forEach(function(form) {
+                form.addEventListener('submit', function(e) {
+                    var titulo = form.dataset.titulo || '';
+                    if (!confirm('Tem certeza que deseja apagar o produto "' + titulo + '"? Essa ação não pode ser desfeita.')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        })();
+    </script>
+}

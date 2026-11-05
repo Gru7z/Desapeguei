@@ -39,3 +39,4 @@ wwwroot\uploads\efa111a833af41cbb6acfd4b2f759c93.mp4
 wwwroot\uploads\f54aebdfa69b49f49cade61c8337803c.png
 wwwroot\uploads\f9b4814d1feb468e9b6acafba2bd7290.mp4
 wwwroot\uploads\fea9bbe58e264257955ff3a66115425f.jpg
+wwwroot\uploads\6115adc9f22942848b0f4a522c6f884c.jpg
