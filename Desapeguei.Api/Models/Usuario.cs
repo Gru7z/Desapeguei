@@ -1,0 +1,15 @@
+﻿namespace Desapeguei.Api.Models
+{
+    public class Usuario
+    {
+        public Guid Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public string Senha { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Telefone { get; set; } = string.Empty;
+        public bool Ativo { get; set; } = true;
+
+        // true = admin, false = usuário comum
+        public bool Admin { get; set; } = false;
+    }
+}

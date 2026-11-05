@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Novo Perfil",
+    "Projects": [
+      {
+        "Path": "Desapeguei.Api\\Desapeguei.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Desapeguei.Web\\Desapeguei.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

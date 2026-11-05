@@ -1,0 +1,165 @@
+using Desapeguei.Api.Models;
+using Desapeguei.Api.Repositories;
+
+namespace Desapeguei.Api.Services
+{
+    public class ProdutoService
+    {
+        private readonly ProdutoRepository _repository;
+
+        public ProdutoService(ProdutoRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<List<Produto>> GetAllAsync(string? categoria)
+        {
+            return await _repository.GetAllAsync(categoria);
+        }
+
+        public async Task<Produto?> GetByIdAsync(Guid id)
+        {
+            var produto = await _repository.GetByIdAsync(id);
+            if (produto == null) return null;
+
+            // Comprado por usuário desativado: fica oculto (volta quando ele for reativado)
+            if (await _repository.CompradorDesativadoAsync(id))
+                return null;
+
+            return produto;
+        }
+
+        public async Task<Produto> CreateAsync(
+            ProdutoInput input,
+            string? vendedorId = null)
+        {
+            Validar(input);
+
+            var produto = new Produto
+            {
+                Titulo = input.Titulo.Trim(),
+                Descricao = input.Descricao.Trim(),
+                Categoria = input.Categoria.Trim(),
+                Preco = input.Preco,
+                DataCriacao = DateTime.UtcNow,
+                Disponivel = input.Disponivel ?? true,
+                VendedorId = vendedorId,
+                // Se o ID do usuário for um Guid válido, guarda também em VendedorGuid
+                VendedorGuid = Guid.TryParse(vendedorId, out var vendedorGuid)
+                    ? vendedorGuid
+                    : null
+            };
+
+            await _repository.AddAsync(produto);
+            await _repository.SaveChangesAsync();
+
+            return produto;
+        }
+
+        public async Task<Produto?> UpdateAsync(
+    Guid id,
+    ProdutoInput input,
+    IFormFile? imagem)
+        {
+            var produto = await _repository.GetByIdAsync(id);
+
+            if (produto == null)
+                return null;
+
+            // Produto vendido não pode ser alterado.
+            if (await _repository.FoiVendidoAsync(id))
+                throw new ArgumentException(
+                    "Produto já vendido não pode ser alterado.");
+
+            Validar(input);
+
+            produto.Titulo = input.Titulo.Trim();
+            produto.Descricao = input.Descricao.Trim();
+            produto.Categoria = input.Categoria.Trim();
+            produto.Preco = input.Preco;
+
+            if (input.Disponivel.HasValue)
+                produto.Disponivel = input.Disponivel.Value;
+
+            // Atualiza a imagem somente se uma nova foi enviada.
+            if (imagem != null && imagem.Length > 0)
+            {
+                if (!imagem.ContentType.StartsWith(
+                        "image/",
+                        StringComparison.OrdinalIgnoreCase)
+                    || imagem.Length > 10 * 1024 * 1024)
+                {
+                    throw new ArgumentException(
+                        "A imagem deve ser válida e ter até 10 MB.");
+                }
+
+                var pastaUploads = Path.Combine(
+                    _repository.GetType().Assembly.Location
+                        .Substring(0, 0),
+                    "uploads");
+            }
+
+            await _repository.SaveChangesAsync();
+
+            return produto;
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var produto = await _repository.GetByIdAsync(id);
+            if (produto == null) return false;
+
+            // Regra: produto vendido não pode ser apagado
+            if (await _repository.FoiVendidoAsync(id))
+                throw new ArgumentException("Produto já vendido não pode ser apagado.");
+
+            _repository.Delete(produto);
+            await _repository.SaveChangesAsync();
+
+            return true;
+        }
+
+        private static void Validar(ProdutoInput input)
+        {
+            if (string.IsNullOrWhiteSpace(input.Titulo))
+                throw new ArgumentException("O título é obrigatório.");
+
+            if (string.IsNullOrWhiteSpace(input.Descricao))
+                throw new ArgumentException("A descrição é obrigatória.");
+
+            if (string.IsNullOrWhiteSpace(input.Categoria))
+                throw new ArgumentException("A categoria é obrigatória.");
+
+            if (input.Preco <= 0)
+                throw new ArgumentException("O preço deve ser maior que zero.");
+        }
+        public async Task SalvarArquivosAsync(Produto produto)
+        {
+            await _repository.SaveChangesAsync();
+        }
+        public async Task<List<Produto>> GetAllAdminAsync(string? busca)
+        {
+            return await _repository.GetAllAdminAsync(busca);
+        }
+
+        public async Task<Produto?> AlternarDisponibilidadeAsync(Guid id)
+        {
+            var produto = await _repository.GetByIdAsync(id);
+
+            if (produto == null)
+                return null;
+
+            produto.Disponivel = !produto.Disponivel;
+
+            await _repository.SaveChangesAsync();
+
+            return produto;
+        }
+
+        public async Task<List<Produto>> GetByVendedorAsync(string vendedorId)
+        {
+            return await _repository.GetByVendedorAsync(vendedorId);
+        }
+
+    }
+}

@@ -1,0 +1,195 @@
+﻿
+@page
+@model Desapeguei.Web.Areas.Identity.Pages.Account.Manage.MinhasVendasModel
+
+@{
+    ViewData["Title"] = "Minhas vendas";
+}
+
+<div class="dados-container">
+
+    <div class="dados-topo">
+        <h1>Minha conta</h1>
+        <p>Confira os produtos que você anunciou</p>
+    </div>
+
+    <div class="dados-conteudo">
+
+        <div class="perfil-menu">
+
+            <a asp-page="./Index" class="perfil-menu-link">
+                Perfil
+            </a>
+
+            <a asp-page="./Email" class="perfil-menu-link">
+                E-mail
+            </a>
+
+            <a asp-page="./Senha" class="perfil-menu-link">
+                Senha
+            </a>
+
+            <a asp-page="./DadosPessoais" class="perfil-menu-link">
+                Dados pessoais
+            </a>
+
+            <a asp-page="./MinhasVendas" class="perfil-menu-link ativo">
+                Minhas vendas
+            </a>
+
+        </div>
+
+        <div class="dados-lista">
+
+            <h2>Meus anúncios</h2>
+
+            @if (Model.Produtos.Any())
+            {
+                <div class="minhas-vendas-lista">
+
+                    @foreach (var produto in Model.Produtos)
+                    {
+                        <div class="produto-venda">
+
+                            @if (!string.IsNullOrEmpty(produto.ImagemUrl))
+                            {
+                                <img src="@Model.ObterImagemUrl(produto.ImagemUrl)"
+                                     alt="@produto.Titulo"
+                                     class="produto-venda-imagem" />
+                            }
+                            else
+                            {
+                                <div class="produto-venda-sem-imagem">
+                                    Sem imagem
+                                </div>
+                            }
+
+                            <div class="produto-venda-info">
+
+                                <h3>@produto.Titulo</h3>
+
+                                <p>@produto.Categoria</p>
+
+                                <strong>
+                                    @produto.Preco.ToString("C",
+                                        System.Globalization.CultureInfo.GetCultureInfo("pt-BR"))
+                                </strong>
+
+                                <span>
+                                    @(produto.Disponivel ? "Disponível" : "Indisponível")
+                                </span>
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+            }
+            else
+            {
+                <div class="sem-vendas">
+                    <h3>Você ainda não possui anúncios.</h3>
+                    <p>Quando publicar um produto, ele aparecerá aqui!</p>
+
+                    <a asp-controller="Vender"
+                       asp-action="Index"
+                       class="btn-vender-minhas">
+                        Anunciar produto
+                    </a>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .minhas-vendas-lista {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 20px;
+    }
+
+    .produto-venda {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 15px;
+        background: #efc8a7;
+        border-radius: 12px;
+    }
+
+    .produto-venda-imagem,
+    .produto-venda-sem-imagem {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 10px;
+        background: #d3a07b;
+    }
+
+    .produto-venda-sem-imagem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #4a2c17;
+        font-size: 13px;
+    }
+
+    .produto-venda-info {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        color: #4a2c17;
+    }
+
+    .produto-venda-info h3 {
+        margin: 0;
+    }
+
+    .produto-venda-info p {
+        margin: 0;
+    }
+
+    .produto-venda-info strong {
+        font-size: 18px;
+    }
+
+    .sem-vendas {
+        text-align: center;
+        padding: 35px 15px;
+        color: #4a2c17;
+    }
+
+    .btn-vender-minhas {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: #a85f2d;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    .btn-vender-minhas:hover {
+        background: #6f472f;
+        color: white;
+    }
+
+    @@media (max-width: 600px) {
+        .produto-venda {
+            align-items: flex-start;
+        }
+
+        .produto-venda-imagem,
+        .produto-venda-sem-imagem {
+            width: 85px;
+            height: 85px;
+        }
+    }
+</style>
